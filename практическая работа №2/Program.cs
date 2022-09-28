@@ -1,64 +1,80 @@
-﻿using System;
-using System.Globalization;
-using System.Security.Cryptography;
-Console.WriteLine("выберите программу, которую вы хотите запустить: \r\n1-Угадай число\r\n2-Таблица умножения\r\n3-Выйти из программы");
-Console.WriteLine("введите операцию: ");
-int a = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("отгадай число от 1 до 100!");
-
-
-switch (a)
+﻿namespace практическая_работа_2
 {
-    case 1:
-        int b = 1;
-        Random rand = new Random();
-        int chislo = rand.Next(9);
-        int k = Convert.ToInt32(Console.ReadLine());
-        while (k != chislo)
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            if (k < chislo)
+            Console.WriteLine("выберите программу, которую вы хотите запустить: \r\n1-Угадай число\r\n2-Таблица умножения\r\n3-Выйти из программы");
+            int a = Convert.ToInt32(Console.ReadLine());
+            while (a != 3)
             {
-                Console.WriteLine("нужно больше ваше число!");
-            }
-            else
-            {
-                Console.WriteLine("нужно меньше ваше число!");
-            }
+                switch (a)
+                {
+                    case 1:
+                        UgadaiChislo();
+                        break;
 
-            {
-                b++;
 
-                Console.WriteLine("Нет, это не число " + k + "! Попытка № " + b + ":");
-                k = Convert.ToInt32(Console.ReadLine());
+                    case 2:
+                        TablicaUmnogenie();
+                        break;
+                }
+
+                Console.WriteLine("выберите программу, которую вы хотите запустить: \r\n1-Угадай число\r\n2-Таблица умножения\r\n3-Выйти из программы");
+                a = Convert.ToInt32(Console.ReadLine());
             }
         }
 
-        if (k == chislo)
+        static void UgadaiChislo()
         {
-            Console.WriteLine("Да! Компьютер загадал число " + k + "!");
-
-        }
-        Console.WriteLine();
-        break;
-
-    case 2:
-        int x = 2;
-        Console.WriteLine();
-
-
-
-        Console.WriteLine("Выберите программу, которую вы хотите запустить \r\n1- Угадай число\r\n2- Таблица умножения\r\n3- Выйти из программы");
-        Console.WriteLine("Введите операцию: ");
-        int i;
-        int umn;
-        for (i = 1; i <= 9; i++)
-        {
-            Console.WriteLine("\t");
-            for (umn = 1; umn <= 9; umn++)
+            Console.WriteLine("отгадай число от 1 до 100!");
+            int b = 1;
+            Random rand = new Random();
+            int chislo = rand.Next(9);
+            int ugadai_chislo = Convert.ToInt32(Console.ReadLine());
+            while (ugadai_chislo != chislo)
             {
-                Console.Write("\t" + i * umn);
+                if (ugadai_chislo < chislo)
+                {
+                    Console.WriteLine("нужно больше ваше число!");
+                }
+                else
+                {
+                    Console.WriteLine("нужно меньше ваше число!");
+                }
+
+                {
+                    b++;
+
+                    Console.WriteLine("Нет, это не число " + ugadai_chislo + "! Попытка № " + b + ":");
+                    ugadai_chislo = Convert.ToInt32(Console.ReadLine());
+                }
             }
+
+            if (ugadai_chislo == chislo)
+            {
+                Console.WriteLine("вы угадали число, молодец!!" + ugadai_chislo + "!");
+
+            }
+            Console.WriteLine();
         }
-        Console.WriteLine();
-        break;
+        static void TablicaUmnogenie()
+        {
+            int x = 2;
+            Console.WriteLine();
+
+
+            int i;
+            int umnogenie;
+            for (i = 1; i <= 9; i++)
+            {
+                Console.WriteLine("\t");
+                for (umnogenie = 1; umnogenie <= 9; umnogenie++)
+                {
+                    Console.Write("\t" + i * umnogenie);
+                }
+            }
+            Console.WriteLine();
+        }
+    }
 }
